@@ -43,7 +43,7 @@ const Viewscategories = () => {
                         <Col md={6}>
                             {scategorie.imagescat && (
                                 <img 
-                                    src={scategorie.imagescat} 
+                                    src={scategorie.imagescategorie} 
                                     alt={scategorie.nomscategorie}
                                     className="img-fluid"
                                     style={{ maxWidth: '200px' }}

@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Categories { 
+  id Int @id @default(autoincrement()) @db.UnsignedInt 
+  nomcategorie String @db.VarChar(255) 
+  imagecategorie String @db.VarChar(255) 
+  sousCategories Scategories[] 
+  created_at DateTime @default(now()) 
+  updated_at DateTime @default(now()) 
+}
+
+model Articles { 
+  id Int @id @default(autoincrement()) @db.UnsignedInt 
+  designation String @db.VarChar(255) 
+  reference String @db.VarChar(255) 
+  marque String @db.VarChar(255) 
+  qtestock Int 
+  prix Float 
+  imageart String @db.VarChar(255) 
+  sousCategorie Scategories @relation(fields: [scategorieID], references: [id]) 
+  scategorieID Int @db.UnsignedInt 
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) 
+}
+
+model Scategories { 
+  id Int @id @default(autoincrement()) @db.UnsignedInt 
+  nomscategorie String @db.VarChar(255) 
+  imagescategorie String 
+  categorie Categories @relation(fields: [categorieID], references: [id]) 
+  categorieID Int @db.UnsignedInt 
+  articles Articles[] 
+  created_at DateTime @default(now()) 
+  updated_at DateTime @default(now()) 
+}
+
+model Users { 
+  id Int @id @default(autoincrement()) @db.UnsignedInt 
+  username String @db.VarChar(255) @unique 
+  email String @db.VarChar(255) @unique 
+  password String @db.VarChar(255) 
+  role String @db.VarChar(255) 
+  createdAt DateTime @default(now()) 
+  updatedAt DateTime @default(now()) 
+}

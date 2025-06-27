@@ -7,7 +7,7 @@ const Insertscategories = () => {
     const navigate = useNavigate();
     const [scategorie, setScategorie] = useState({
         nomscategorie: '',
-        imagescat: '',
+        imagescategorie: '',
         categorieID: ''
     });
     const [categories, setCategories] = useState([]);
@@ -50,10 +50,10 @@ const Insertscategories = () => {
                     <input
                         type="text"
                         value={scategorie.imagescat}
-                        onChange={(e) => setScategorie({...scategorie, imagescat: e.target.value})}
+                        onChange={(e) => setScategorie({...scategorie, imagescategorie: e.target.value})}
                         className="form-input"
                     />
-                    {scategorie.imagescat && <img src={scategorie.imagescat} alt="prévisualisation" width="100" />}
+                    {scategorie.imagescategorie && <img src={scategorie.imagescategorie} alt="prévisualisation" width="100" />}
                 </div>
                 <div className="form-group">
                     <label>Catégorie parente</label>
